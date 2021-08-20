@@ -1,4 +1,5 @@
 kind: Deployment
+apiVersion: apps/v1
 metadata:
  name: noderedrepo-1
 spec:
