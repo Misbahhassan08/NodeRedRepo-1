@@ -1,3 +1,15 @@
+apiVersion: v1 
+kind: Service
+metadata:
+ name: noderedrepo-1
+spec:
+ type: LoadBalancer
+ selector:
+  app: noderedrepo-1
+ ports:
+ - port: 80
+ targetPort: 1880
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -17,6 +29,3 @@ spec:
    image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
    ports:
    - containerPort: 1880
-   env:
-   - name: PORT
-   value: "1880"
