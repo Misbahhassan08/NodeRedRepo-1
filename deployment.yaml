@@ -7,8 +7,9 @@ spec:
  selector:
   app: noderedrepo-1
  ports:
- - port: 80
- targetPort: 1880
+ - protocol: TCP
+   port: 80
+   targetPort: 1880
 ---
 kind: Deployment
 apiVersion: apps/v1
@@ -26,6 +27,6 @@ spec:
   spec:
    containers:
    - name: cluster-1
-   image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
-   ports:
-   - containerPort: 1880
+     image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
+     ports:
+     - containerPort: 1880
