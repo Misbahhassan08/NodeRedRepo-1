@@ -67,16 +67,6 @@ LABEL org.label-schema.build-date=${BUILD_DATE} \
 
 COPY --from=build /usr/src/node-red/prod_node_modules ./node_modules
 
-
-# Chown, install devtools & Clean up
-RUN chown -R node-red:root /usr/src/node-red && \
-    apt-get update && apt-get install -y build-essential python-dev python3
-    
-# Chown, install devtools & Clean up
-#RUN chown -R node-red:root /usr/src/node-red && \
-    #/tmp/install_devtools.sh && \
-    #rm -r /tmp/*
-
 USER node-red
 
 # Env variables
