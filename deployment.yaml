@@ -1,0 +1,21 @@
+kind: Deployment 
+metadata:
+	name: noderedrepo-1
+spec:
+	replicas: 1
+	selector:
+		matchLabels:
+			app: noderedrepo-1
+	template: 
+		metadata:
+			labels:
+				app: noderedrepo-1
+		spec:
+			containers:
+			- name: cluster-1
+			image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
+			ports:
+			- containerPort: 1880
+			env:
+			- name: PORT
+			  value: "1880"
