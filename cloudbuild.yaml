@@ -1,0 +1,16 @@
+steps:
+  # Step for Build Container image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:$COMMIT_SHA","."]
+  
+  # Step for Push Container image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:$COMMIT_SHA"]
+    
+  # Step for deploy Container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+    - run
+    - --gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:$COMMIT_SHA
+    - --location=us-central1-b
+    - --cluster=cluster-1
