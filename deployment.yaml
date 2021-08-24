@@ -36,15 +36,18 @@ kind: Ingress
 metadata:
  name: noderedrepo-1-ingress
  annotations:
-  kubernetes.io/ingress.global-static-ip-name: http://34.135.69.91/
+  kubernetes.io/ingress.global-static-ip-name: noderedrepo1
   networking.gke.io/managed-certificates: noderedrepo-1-certificate
   kubernetes.io/ingress.class: "gce"
 spec:
- defaultBackend:
-  service:
-    name: noderedrepo-1
-    port:
-      number: 80
+ rules:
+  -host: noderedrepo1.com
+   http:
+    paths:
+     - path: /
+       backend:
+        serviceName: noderedrepo-1
+        servicePort: 80
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
@@ -52,4 +55,4 @@ metadata:
  name: noderedrepo-1-certificate
 spec:
  domains:
-  - http://34.135.69.91/
+  - noderedrepo1.com
