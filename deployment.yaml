@@ -40,16 +40,11 @@ metadata:
   networking.gke.io/managed-certificates: noderedrepo-1-certificate
   kubernetes.io/ingress.class: "gce"
 spec:
- rules:
-  - host: noderedrepo1.com
-    http:
-     paths:
-      - path: /
-        backend:
-         service:
-          name: noderedrepo-1
-          port: 
-           number: 80
+ defaultBackend:
+  service:
+   name: noderedrepo-1
+   port: 
+    number: 80
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
