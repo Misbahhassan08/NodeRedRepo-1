@@ -46,8 +46,10 @@ spec:
      paths:
       - path: /
         backend:
-         serviceName: noderedrepo-1
-         servicePort: 80
+         service:
+          name: noderedrepo-1
+          port: 
+           number: 80
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
