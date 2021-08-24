@@ -41,13 +41,13 @@ metadata:
   kubernetes.io/ingress.class: "gce"
 spec:
  rules:
-  -host: noderedrepo1.com
-   http:
-    paths:
-     - path: /
-       backend:
-        serviceName: noderedrepo-1
-        servicePort: 80
+  - host: noderedrepo1.com
+    http:
+     paths:
+      - path: /
+        backend:
+         serviceName: noderedrepo-1
+         servicePort: 80
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
