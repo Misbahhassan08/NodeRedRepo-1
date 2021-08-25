@@ -11,7 +11,7 @@
  *    https://nodered.org/docs/user-guide/runtime/configuration
  **/
 process.env.HOSTNAME = require('os').hostname();
-process.env.misbah = 'My name is misbah';
+//process.env.misbah = 'My name is misbah';
 module.exports = {
     // the tcp port that the Node-RED web server is listening on
     uiPort: process.env.PORT || 1880,
