@@ -11,6 +11,7 @@
  *    https://nodered.org/docs/user-guide/runtime/configuration
  **/
 process.env.HOSTNAME = require('os').hostname();
+var db = require('firebase');
 //process.env.misbah = 'My name is misbah';
 module.exports = {
     // the tcp port that the Node-RED web server is listening on
