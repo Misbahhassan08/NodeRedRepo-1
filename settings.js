@@ -94,7 +94,7 @@ module.exports = {
     // By default, the Node-RED UI is available at http://localhost:1880/
     // The following property can be used to specify a different root path.
     // If set to false, this is disabled.
-    httpAdminRoot: '/admin',
+    //httpAdminRoot: '/admin',
 
     // Some nodes, such as HTTP In, can be used to listen for incoming http requests.
     // By default, these are served relative to '/'. The following property
@@ -132,7 +132,7 @@ module.exports = {
         type: "credentials",
         users: [{
             username: "admin",
-            password: "$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN.",
+            password: "$2b$08$LUzbzflSW6JEKXEprBc/AuqO4SJKqlY47EsCzw.FoS406Q6r756wO",
             permissions: "*"
         }]
     },
@@ -150,10 +150,10 @@ module.exports = {
     // This property can be either an object, containing both a (private) key and a (public) certificate,
     // or a function that returns such an object:
     //// https object:
-    https: {
-      key: require("fs").readFileSync('privkey.pem'),
-      cert: require("fs").readFileSync('cert.pem')
-    },
+    //https: {
+    //  key: require("fs").readFileSync('privkey.pem'),
+    //  cert: require("fs").readFileSync('cert.pem')
+    //},
     ////https function:
     // https: function() {
     //     // This function should return the options object, or a Promise
@@ -174,7 +174,7 @@ module.exports = {
 
     // The following property can be used to cause insecure HTTP connections to
     // be redirected to HTTPS.
-    requireHttps: true,
+    //requireHttps: true,
 
     // The following property can be used to disable the editor. The admin API
     // is not affected by this option. To disable both the editor and the admin
