@@ -33,6 +33,7 @@ WORKDIR /usr/src/node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json .
+COPY server.js .
 COPY settings.js /data
 COPY flows.json /data
 
@@ -85,4 +86,4 @@ EXPOSE 1880
 # Add a healthcheck (default every 30 secs)
 # HEALTHCHECK CMD curl http://localhost:1880/ || exit 1
 
-ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
+ENTRYPOINT ["node", "server.js", "--cache", "/data/.npm", "--", "--userDir", "/data"]
