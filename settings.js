@@ -13,27 +13,8 @@
 
 console.log("Settings.js called ");
 process.env.HOSTNAME = require('os').hostname();
-const firebase = require('firebase');
-var config = {
-	apiKey: "AIzaSyBm9aqlnW3kprayTQRXPM_DXcB3Q3vy45E",
-    authDomain: "synapses-323217.firebaseapp.com",
-    databaseURL: "https://synapses-323217-default-rtdb.firebaseio.com",
-    projectId: "synapses-323217",
-    storageBucket: "synapses-323217.appspot.com",
-    messagingSenderId: "425490400637",
-    appId: "1:425490400637:web:b255d2603e47dfa8673814",
-    measurementId: "G-4BZDVWHKZD"
-};
-let firebaseApp = firebase.initializeApp(config);
-let database = firebase.database().ref();
-let dbRefs = database.child('noderedrepo-1');
-
-//dbRefs.ref("misbah").set("test string");
 //process.env.misbah = 'My name is misbah';
 module.exports = {
-	firebaseApp,
-	database,
-	dbRefs,
     // the tcp port that the Node-RED web server is listening on
     uiPort: process.env.PORT || 1880,
     // By default, the Node-RED UI accepts connections on all IPv4 interfaces.
