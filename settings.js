@@ -26,7 +26,7 @@ let firebaseApp = firebase.initializeApp(config);
 let database = firebase.database().ref();
 let dbRefs = database.child('noderedrepo-1');
 
-dbRefs.ref("misbah").set("test string");
+//dbRefs.ref("misbah").set("test string");
 //process.env.misbah = 'My name is misbah';
 module.exports = {
 	firebaseApp,
