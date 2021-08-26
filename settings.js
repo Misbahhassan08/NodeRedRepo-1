@@ -10,6 +10,8 @@
  * For more information about individual settings, refer to the documentation:
  *    https://nodered.org/docs/user-guide/runtime/configuration
  **/
+
+console.log("Settings.js called ");
 process.env.HOSTNAME = require('os').hostname();
 const firebase = require('firebase');
 var config = {
