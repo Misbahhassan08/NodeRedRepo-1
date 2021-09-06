@@ -45,6 +45,7 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
     npm install --unsafe-perm --no-update-notifier --no-fund --only=production && \
     cp -R node_modules prod_node_modules
 
+RUN npm install firebase
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
 ARG BUILD_DATE
