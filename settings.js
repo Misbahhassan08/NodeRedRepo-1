@@ -262,13 +262,13 @@ module.exports = {
     // can be accessed in a function block as:
     //    global.get("os")
     functionGlobalContext: {
-        //os:require('os')
+        os:require('os')
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
     },
 
     // Allow the Function node to load additional npm modules
-    functionExternalModules: false,
+    functionExternalModules: true,
 
     // `global.keys()` returns a list of all properties set in global context.
     // This allows them to be displayed in the Context Sidebar within the editor.
