@@ -47,6 +47,9 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
 
 RUN npm install firebase
 RUN npm install firebaseui --save
+RUN npm install node-red-dashboard
+RUN npm install node-red-contrib-google-cloud
+
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
 ARG BUILD_DATE
