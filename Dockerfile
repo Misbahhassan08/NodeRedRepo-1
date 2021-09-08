@@ -46,6 +46,7 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
     cp -R node_modules prod_node_modules
 
 RUN npm install firebase
+RUN npm install firebaseui --save
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
 ARG BUILD_DATE
