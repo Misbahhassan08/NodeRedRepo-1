@@ -130,23 +130,23 @@ module.exports = {
     // To password protect the Node-RED editor and admin API, the following
     // property can be used. See http://nodered.org/docs/security.html for details.
     //httpAdminAuth: {user:"user", pass:"admin1234"}
-    //adminAuth: {
-    //    type: "credentials",
-    //    users: [{
-    //        username: "admin",
-    //        password: "$2b$08$LUzbzflSW6JEKXEprBc/AuqO4SJKqlY47EsCzw.FoS406Q6r756wO",
-    //        permissions: "*"
-    //    },
-    //    {
-    //    
-    //        username: "dev24",
-    //        password: "$2b$08$ZjVQSZ5iOssafU.EfLwZJ.LWtWSnQno3CvVpiR9hAt5y2MlqsMheq",
-    //        permissions: "read"
-    //    
-    //    }
-    //           ]
-    //    
-    //},
+    adminAuth: {
+        type: "credentials",
+        users: [{
+            username: "admin",
+            password: "$2b$08$LUzbzflSW6JEKXEprBc/AuqO4SJKqlY47EsCzw.FoS406Q6r756wO",
+            permissions: "*"
+        },
+        {
+        
+            username: "dev24",
+            password: "$2b$08$ZjVQSZ5iOssafU.EfLwZJ.LWtWSnQno3CvVpiR9hAt5y2MlqsMheq",
+            permissions: "read"
+        
+        }
+               ]
+        
+    },
 
     // To password protect the node-defined HTTP endpoints (httpNodeRoot), or
     // the static content (httpStatic), the following properties can be used.
@@ -166,14 +166,14 @@ module.exports = {
       cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
     },
     ////https function:
-    // https: function() {
+     https: function() {
          // This function should return the options object, or a Promise
          // that resolves to the options object
-     //    return {
-     //        key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
-     //        cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
-     //    }
-     //},
+         return {
+             key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
+             cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
+         }
+     },
 
     // The following property can be used to refresh the https settings at a
     // regular time interval in hours.
@@ -181,7 +181,7 @@ module.exports = {
     //   - the `https` setting to be a function that can be called to get
     //     the refreshed settings.
     //   - Node.js 11 or later.
-    //httpsRefreshInterval : 12,
+    httpsRefreshInterval : 12,
 
     // The following property can be used to cause insecure HTTP connections to
     // be redirected to HTTPS.
