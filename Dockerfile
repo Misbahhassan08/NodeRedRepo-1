@@ -45,10 +45,7 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
     npm install --unsafe-perm --no-update-notifier --no-fund --only=production && \
     cp -R node_modules prod_node_modules
 
-RUN npm install firebase
-RUN npm install firebaseui --save
-RUN npm install node-red-dashboard
-RUN npm install node-red-contrib-google-cloud
+
 
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
@@ -73,6 +70,12 @@ LABEL org.label-schema.build-date=${BUILD_DATE} \
     authors="Dave Conway-Jones, Nick O'Leary, James Thomas, Raymond Mouthaan"
 
 COPY --from=build /usr/src/node-red/prod_node_modules ./node_modules
+
+RUN npm install firebase
+RUN npm install firebaseui --save
+RUN npm install node-red-dashboard
+RUN npm install node-red-contrib-google-cloud
+RUN apt-get install -y python3-pip python3-numpy python3-pandas 
 
 USER node-red
 
