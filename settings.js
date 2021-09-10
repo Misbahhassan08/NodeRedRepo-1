@@ -162,16 +162,16 @@ module.exports = {
     // or a function that returns such an object:
     //// https object:
     https: {
-      key: require("fs").readFileSync('privatekey.pem'),
-      cert: require("fs").readFileSync('certificate.pem')
+      key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
+      cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
     },
     ////https function:
      https: function() {
          // This function should return the options object, or a Promise
          // that resolves to the options object
          return {
-             key: require("fs").readFileSync('privatekey.pem'),
-             cert: require("fs").readFileSync('certificate.pem')
+             key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
+             cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
          }
      },
 
