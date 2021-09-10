@@ -52,4 +52,4 @@ metadata:
  name: noderedrepo-1-certificate
 spec:
  domains:
-  - noderedrepo-1
+  - noderedrepo-1.com
