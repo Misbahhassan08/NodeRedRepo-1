@@ -28,24 +28,34 @@ RUN set -ex && \
     # chown -R node-red:node-red /data && \
     # chown -R node-red:node-red /usr/src/node-red
 
+RUN echo "List of main Directory *************** \n\"
+RUN pwd
+RUN ls -la
 # Set work directory
 WORKDIR /usr/src/node-red
-RUN ls -la
+
 # package.json contains Node-RED NPM module and node dependencies
+
+RUN echo "List of node-red Directory before copy  *************** \n\"
+RUN pwd
+RUN ls -la
+
 
 COPY package.json .
 COPY server.js .
 COPY settings.js /data
 COPY flows.json /data
 
-RUN ls /usr/src/node-red/data
+
+RUN echo "List of node-red Directory after copy  *************** \n\"
+RUN pwd
+RUN ls -la
 
 RUN openssl genrsa -out privatekey.pem 1024
 RUN openssl req -new -key privatekey.pem -out private-csr.pem -subj "/C=UA/ST=Kharkov/L=Kharkov/O=iRobotX/OU=IT Department/CN=34.135.69.91:80.com"
 RUN openssl x509 -req -days 365 -in private-csr.pem -signkey privatekey.pem -out certificate.pem
-RUN ls -la
-COPY privatekey.pem /data
-COPY certificate.pem /data
+
+
 #### Stage BUILD #######################################################################################################
 FROM base AS build
 
