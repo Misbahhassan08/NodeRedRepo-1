@@ -43,8 +43,6 @@ RUN openssl req -new -key privatekey.pem -out private-csr.pem -subj "/C=UA/ST=Kh
 RUN openssl x509 -req -days 365 -in private-csr.pem -signkey privatekey.pem -out certificate.pem
 RUN ls -la
 
-COPY privatekey.pem .
-COPY certificate.pem .
 #### Stage BUILD #######################################################################################################
 FROM base AS build
 
