@@ -161,19 +161,19 @@ module.exports = {
     // This property can be either an object, containing both a (private) key and a (public) certificate,
     // or a function that returns such an object:
     //// https object:
-    https: {
-      key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
-      cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
-    },
+    //https: {
+    //  key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
+    //  cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
+    //},
     ////https function:
-     https: function() {
+    // https: function() {
          // This function should return the options object, or a Promise
          // that resolves to the options object
-         return {
-             key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
-             cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
-         }
-     },
+     //    return {
+     //        key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
+     //        cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
+     //    }
+     //},
 
     // The following property can be used to refresh the https settings at a
     // regular time interval in hours.
