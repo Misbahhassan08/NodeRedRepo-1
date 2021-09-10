@@ -30,9 +30,10 @@ RUN set -ex && \
 RUN openssl genrsa -out privatekey.pem 1024
 RUN openssl req -new -key privatekey.pem -out private-csr.pem -subj "/C=UA/ST=Kharkov/L=Kharkov/O=iRobotX/OU=IT Department/CN=34.135.69.91:80.com"
 RUN openssl x509 -req -days 365 -in private-csr.pem -signkey privatekey.pem -out certificate.pem
+RUN ls -la
 # Set work directory
 WORKDIR /usr/src/node-red
-
+RUN ls -la
 # package.json contains Node-RED NPM module and node dependencies
 COPY privatekey.pem .
 COPY certificate.pem .
