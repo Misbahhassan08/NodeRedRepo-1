@@ -28,7 +28,7 @@ RUN set -ex && \
     # chown -R node-red:node-red /data && \
     # chown -R node-red:node-red /usr/src/node-red
 
-RUN echo "List of main Directory *************** \n\"
+RUN echo "List of main Directory *************** \n"
 RUN pwd
 RUN ls -la
 # Set work directory
@@ -36,7 +36,7 @@ WORKDIR /usr/src/node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 
-RUN echo "List of node-red Directory before copy  *************** \n\"
+RUN echo "List of node-red Directory before copy  *************** \n"
 RUN pwd
 RUN ls -la
 
@@ -47,7 +47,7 @@ COPY settings.js /data
 COPY flows.json /data
 
 
-RUN echo "List of node-red Directory after copy  *************** \n\"
+RUN echo "List of node-red Directory after copy  *************** \n"
 RUN pwd
 RUN ls -la
 
