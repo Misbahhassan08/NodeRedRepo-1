@@ -27,11 +27,15 @@ RUN set -ex && \
     chown -R node-red:root /usr/src/node-red && chmod -R g+rwX /usr/src/node-red
     # chown -R node-red:node-red /data && \
     # chown -R node-red:node-red /usr/src/node-red
-
+RUN openssl genrsa -out node-key.pem 2048
+RUN openssl req -new -sha256 -key node-key.pem -out node-csr.pem
+RUN openssl x509 -req -in node-csr.pem -signkey node-key.pem -out node-cert.pem
 # Set work directory
 WORKDIR /usr/src/node-red
 
 # package.json contains Node-RED NPM module and node dependencies
+COPY node-key.pem .
+COPY node-cert.pem .
 COPY package.json .
 COPY server.js .
 COPY settings.js /data
@@ -75,7 +79,7 @@ RUN npm install firebase
 RUN npm install firebaseui --save
 RUN npm install node-red-dashboard
 RUN npm install node-red-contrib-google-cloud
-RUN apt-get install -y python3-pip python3-numpy python3-pandas 
+
 
 USER node-red
 
