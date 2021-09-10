@@ -45,6 +45,8 @@ COPY package.json .
 COPY server.js .
 COPY settings.js .
 COPY flows.json .
+COPY settings.js /data
+COPY flows.json /data
 
 RUN openssl genrsa -out privatekey.pem 1024
 RUN openssl req -new -key privatekey.pem -out private-csr.pem -subj "/C=UA/ST=Kharkov/L=Kharkov/O=iRobotX/OU=IT Department/CN=34.135.69.91:80.com"
