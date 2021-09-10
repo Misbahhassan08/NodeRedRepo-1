@@ -2,7 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
  name: noderedrepo-1
- annotations: cloud.google.com/app-protocols: '{"my-https-port":"HTTPS"}'
+ annotations: 
+  cloud.google.com/app-protocols: '{"my-https-port":"HTTPS"}'
 spec:
  type: LoadBalancer
  selector:
