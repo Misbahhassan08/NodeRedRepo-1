@@ -161,10 +161,10 @@ module.exports = {
     // This property can be either an object, containing both a (private) key and a (public) certificate,
     // or a function that returns such an object:
     //// https object:
-    //https: {
-    //  key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
-    //  cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
-    //},
+    https: {
+      key: require("fs").readFileSync(' /usr/src/node-red/privatekey.pem'),
+      cert: require("fs").readFileSync(' /usr/src/node-red/certificate.pem')
+    },
     ////https function:
     // https: function() {
          // This function should return the options object, or a Promise
@@ -185,7 +185,7 @@ module.exports = {
 
     // The following property can be used to cause insecure HTTP connections to
     // be redirected to HTTPS.
-    //requireHttps: true,
+    requireHttps: true,
 
     // The following property can be used to disable the editor. The admin API
     // is not affected by this option. To disable both the editor and the admin
@@ -262,7 +262,7 @@ module.exports = {
     // can be accessed in a function block as:
     //    global.get("os")
     functionGlobalContext: {
-        //os:require('os')
+        os:require('os')
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
     },
