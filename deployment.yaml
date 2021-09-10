@@ -30,26 +30,4 @@ spec:
      image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
      ports:
      - containerPort: 1880
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
- name: noderedrepo-1-ingress
- annotations:
-  kubernetes.io/ingress.global-static-ip-name: noderedrepo-1
-  networking.gke.io/managed-certificates: noderedrepo-1-certificate
-  kubernetes.io/ingress.class: "gce"
-spec:
- defaultBackend:
-  service:
-   name: noderedrepo-1
-   port: 
-    number: 80
----
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
- name: noderedrepo-1-certificate
-spec:
- domains:
-  - noderedrepo-1.com
+
