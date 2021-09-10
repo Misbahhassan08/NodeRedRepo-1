@@ -27,9 +27,9 @@ RUN set -ex && \
     chown -R node-red:root /usr/src/node-red && chmod -R g+rwX /usr/src/node-red
     # chown -R node-red:node-red /data && \
     # chown -R node-red:node-red /usr/src/node-red
-RUN openssl genrsa -out node-key.pem 2048
-RUN openssl req -new -sha256 -key node-key.pem -out node-csr.pem
-RUN openssl x509 -req -in node-csr.pem -signkey node-key.pem -out node-cert.pem
+RUN openssl genrsa -out privatekey.pem 1024
+RUN openssl req -new -key privatekey.pem -out private-csr.pem
+RUN openssl x509 -req -days 365 -in private-csr.pem -signkey privatekey.pem -out certificate.pem
 # Set work directory
 WORKDIR /usr/src/node-red
 
