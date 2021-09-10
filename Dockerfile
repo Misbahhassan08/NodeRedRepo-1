@@ -38,6 +38,8 @@ COPY server.js .
 COPY settings.js /data
 COPY flows.json /data
 
+RUN ls /usr/src/node-red
+
 RUN openssl genrsa -out privatekey.pem 1024
 RUN openssl req -new -key privatekey.pem -out private-csr.pem -subj "/C=UA/ST=Kharkov/L=Kharkov/O=iRobotX/OU=IT Department/CN=34.135.69.91:80.com"
 RUN openssl x509 -req -days 365 -in private-csr.pem -signkey privatekey.pem -out certificate.pem
