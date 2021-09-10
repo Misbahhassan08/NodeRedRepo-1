@@ -52,4 +52,4 @@ metadata:
  name: noderedrepo-1-certificate
 spec:
  domains:
-  - https://34.135.69.91/
+  - 34.135.69.91/
