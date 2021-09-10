@@ -34,8 +34,8 @@ RUN openssl x509 -req -days 365 -in private-csr.pem -signkey privatekey.pem -out
 WORKDIR /usr/src/node-red
 
 # package.json contains Node-RED NPM module and node dependencies
-COPY node-key.pem .
-COPY node-cert.pem .
+COPY privatekey.pem .
+COPY certificate.pem .
 COPY package.json .
 COPY server.js .
 COPY settings.js /data
