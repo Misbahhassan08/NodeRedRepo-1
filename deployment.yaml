@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "github-misbahhassan08-noderedrepo-1-1"
-        image: "gcr.io/synapses-323217/github_misbahhassan08_noderedrepo-1:$SHORT_SHA"
+        image: "gcr.io/synapses-323217/github_misbahhassan08_noderedrepo-1:latest"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
