@@ -13,5 +13,5 @@ steps:
     - run
     - --filename=deployment.yaml
     - --image=gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:$COMMIT_SHA
-    - --location=us-central1-a
+    - --location=us-central1
     - --cluster=autopilot-cluster1-ibrainos
