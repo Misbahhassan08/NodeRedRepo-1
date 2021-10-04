@@ -1,41 +1,32 @@
----
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: v1 
+kind: Service
 metadata:
-  name: "nginx-3"
-  namespace: "default"
-  labels:
-    app: "nginx-3"
+ name: noderedrepo-1
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: "nginx-3"
-  template:
-    metadata:
-      labels:
-        app: "nginx-3"
-    spec:
-      containers:
-      - name: "github-misbahhassan08-noderedrepo-1-1"
-        image: "gcr.io/synapses-323217/github_misbahhassan08_noderedrepo-1:latest"
+ type: LoadBalancer
+ selector:
+  app: noderedrepo-1
+ ports:
+ - protocol: TCP
+   port: 80
+   targetPort: 1880
 ---
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
+kind: Deployment
+apiVersion: apps/v1
 metadata:
-  name: "nginx-3-hpa-myto"
-  namespace: "default"
-  labels:
-    app: "nginx-3"
+ name: noderedrepo-1
 spec:
-  scaleTargetRef:
-    kind: "Deployment"
-    name: "nginx-3"
-    apiVersion: "apps/v1"
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-  - type: "Resource"
-    resource:
-      name: "cpu"
-      targetAverageUtilization: 80
+ replicas: 3
+ selector:
+  matchLabels:
+   app: noderedrepo-1
+ template:
+  metadata:
+   labels:
+    app: noderedrepo-1
+  spec:
+   containers:
+   - name: nodered-cluster
+     image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
+     ports:
+     - containerPort: 1880
