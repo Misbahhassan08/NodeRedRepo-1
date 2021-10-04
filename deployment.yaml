@@ -1,57 +1,175 @@
-apiVersion: v1 
-kind: Service
-metadata:
- name: noderedrepo-1
- annotations: 
-  cloud.google.com/app-protocols: '{"my-https-port":"HTTPS"}'
-spec:
- type: LoadBalancer
- selector:
-  app: noderedrepo-1
- ports:
- - name: my-https-port
-   port: 80
-   targetPort: 1880
----
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
- name: noderedrepo-1
+  annotations:
+    autopilot.gke.io/resource-adjustment: >-
+      {"input":{"containers":[{"name":"nodered-https-1"}]},"output":{"containers":[{"limits":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"nodered-https-1"}]},"modified":true}
+  labels:
+    app: nginx-2
+  managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:progressDeadlineSeconds': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:strategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+            'f:type': {}
+          'f:template':
+            'f:metadata':
+              'f:labels':
+                .: {}
+                'f:app': {}
+            'f:spec':
+              'f:containers':
+                'k:{"name":"nodered-https-1"}':
+                  .: {}
+                  'f:image': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+                  'f:resources': {}
+                  'f:terminationMessagePath': {}
+                  'f:terminationMessagePolicy': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: '2021-10-04T18:22:33Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:deployment.kubernetes.io/revision': {}
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:updatedReplicas': {}
+      manager: kube-controller-manager
+      operation: Update
+      time: '2021-10-04T18:29:52Z'
+  name: nginx-2
+  namespace: default
 spec:
- replicas: 1
- selector:
-  matchLabels:
-   app: noderedrepo-1
- template:
-  metadata:
-   labels:
-    app: noderedrepo-1
-  spec:
-   containers:
-   - name: cluster-1
-     image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
-     ports:
-     - containerPort: 1880
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx-2
+    spec:
+      containers:
+        - image: gcr.io/synapses-323217/github_misbahhassan08_noderedrepo-1
+          imagePullPolicy: IfNotPresent
+          name: nodered-https-1
+          resources:
+            limits:
+              cpu: 500m
+              ephemeral-storage: 1Gi
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              ephemeral-storage: 1Gi
+              memory: 2Gi
+          securityContext:
+            capabilities:
+              drop:
+                - NET_RAW
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
 metadata:
- name: noderedrepo-1-ingress
- annotations:
-  kubernetes.io/ingress.global-static-ip-name: 34.135.69.91
-  networking.gke.io/managed-certificates: noderedrepo-1-certificate
-  kubernetes.io/ingress.class: "gce"
+  labels:
+    app: nginx-2
+  managedFields:
+    - apiVersion: autoscaling/v2beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:maxReplicas': {}
+          'f:metrics': {}
+          'f:minReplicas': {}
+          'f:scaleTargetRef':
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:name': {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: '2021-10-04T18:22:33Z'
+    - apiVersion: autoscaling/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:autoscaling.alpha.kubernetes.io/conditions': {}
+            'f:autoscaling.alpha.kubernetes.io/current-metrics': {}
+        'f:status':
+          'f:currentCPUUtilizationPercentage': {}
+          'f:currentReplicas': {}
+          'f:desiredReplicas': {}
+          'f:lastScaleTime': {}
+      manager: vpa-recommender
+      operation: Update
+      time: '2021-10-04T18:28:04Z'
+  name: nginx-2-hpa-zvrg
+  namespace: default
 spec:
- defaultBackend:
-  service:
-   name: noderedrepo-1
-   port: 
-    number: 80
----
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
- name: noderedrepo-1-certificate
-spec:
- domains:
-  - noderedrepo-1.com
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 80
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-2
