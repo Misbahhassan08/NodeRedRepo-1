@@ -1,27 +1,26 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
- name: noderedrepo-1
+  name: nodered-dep
 spec:
- replicas: 3
- selector:
-  matchLabels:
-   app: noderedrepo-1
- template:
-  metadata:
-   labels:
-    app: noderedrepo-1
-  spec:
-   containers:
-   - name: nodered-cluster
-     image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
-     env:
-      resources:
-       requests:
-        cpu: 100m
-        memory: 100Mi
-     ports:
-     - containerPort: 1880
+  replicas: 3
+  selector:
+    matchLabels:
+        app: noderedrepo-1
+  template:
+    metadata:
+      labels:
+        app: noderedrepo-1
+    spec:
+      containers:
+      - name: noderedrepo-1
+        image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 1880
 ---
 apiVersion: v1 
 kind: Service
