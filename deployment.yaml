@@ -99,7 +99,7 @@ spec:
         app: nginx-2
     spec:
       containers:
-        - image: gcr.io/synapses-323217/github_misbahhassan08_noderedrepo-1
+        - image: gcr.io/synapses-323217/github.com/misbahhassan08/noderedrepo-1
           imagePullPolicy: IfNotPresent
           name: nodered-https-1
           resources:
